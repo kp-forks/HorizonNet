@@ -66,18 +66,32 @@ Pytorch installation is machine dependent, please install the correct version fo
 
 
 #### Pretrained Models
-Plase download the pre-trained model [here](https://drive.google.com/drive/folders/1bgJspDogOHGdwXxCB8o3irU3_Gz9rTpK?usp=drive_link)
+Please find the pre-trained weights [here](https://huggingface.co/sunset1995/HorizonNet/tree/main). By downloading the weights, you agree with the license and term of usage of the training datasets.
 - `resnet50_rnn__panos2d3d.pth`
     - Trained on PanoContext/Stanford2d3d 817 pano images.
-    - Trained for 300 epoch
 - `resnet50_rnn__st3d.pth`
     - Trained on Structured3D 18362 pano images
     - Data setup: original furniture and lighting.
-    - Trained for 50 epoch.
+- `resnet50_rnn__mp3d.pth`
+    - Trained on Matterport3D datasets.
 - `resnet50_rnn__zind.pth`
     - Trained on Zillow Indoor 20077 pano images.
     - Data setup: `layout_visible`, `is_primary`, `is_inside`, `is_ceiling_flat`.
-    - Trained for 50 epoch.
+
+CLI downloading example:
+```bash
+huggingface-cli download sunset1995/HorizonNet resnet50_rnn__panos2d3d.pth --local-dir ./ckpt
+```
+
+Python script downloading example:
+```python
+from huggingface_hub import hf_hub_download
+
+file_path = hf_hub_download(
+    repo_id="sunset1995/HorizonNet", 
+    filename="resnet50_rnn__panos2d3d.pth", 
+    local_dir="./ckpt")
+```
 
 
 ## Inference on your images
